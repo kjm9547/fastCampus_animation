@@ -1,0 +1,88 @@
+import { useEffect, useRef } from 'react';
+import {Animated, Text, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+export default function Skeleton() {
+    const interpolateAnim = useRef(new Animated.Value(0)).current 
+
+    useEffect(()=>{
+        Animated.loop(
+        Animated.timing(interpolateAnim,{
+            toValue:1,
+            useNativeDriver:false,
+            duration:1200,
+        })).start()
+    },[])
+  return (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin: 20,
+      }}>
+      {[...Array(8)].map((value, index) => {
+        return (
+          <View
+            style={{
+              position: 'relative',
+              flexDirection: 'row',
+              marginVertical: 8,
+              overflow: 'hidden',
+            }}
+            key={index}>
+            <View
+              style={{
+                width: 60,
+                height: 60,
+                backgroundColor: '#dfdfdf',
+                borderRadius: 4,
+              }}></View>
+            <View style={{marginLeft: 10, flex: 1}}>
+              <View
+                style={{
+                  width: '80%',
+                  height: 14,
+                  backgroundColor: '#dfdfdf',
+                  borderRadius: 4,
+                }}
+              />
+              <View
+                style={{
+                  width: '100%',
+                  height: 14,
+                  backgroundColor: '#dfdfdf',
+                  borderRadius: 4,
+                }}
+              />
+              <View
+                style={{
+                  width: '100%',
+                  height: 14,
+                  backgroundColor: '#dfdfdf',
+                  borderRadius: 4,
+                }}
+              />
+            </View>
+            <Animated.View
+              style={{
+                
+                position: 'absolute',
+              top:-30,
+              left:interpolateAnim.interpolate({
+                inputRange:[0,1],
+                outputRange:['-20%','100%'],
+              }),
+               transform: [{rotate: '20deg'}]}}>
+              <LinearGradient
+                start={{x: 0, y: 0}}
+                end={{x: 1, y: 0}}
+                colors={['#ffffff00', '#ffffff90', '#ffffff00']}>
+                <View style={{width: 40, height: 100}} />
+              </LinearGradient>
+            </Animated.View>
+          </View>
+        );
+      })}
+    </View>
+  );
+}

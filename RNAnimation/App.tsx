@@ -7,9 +7,13 @@
 
 import React from 'react';
 import {
+  LayoutAnimation,
+  PanResponder,
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
+  UIManager,
   View,
 } from 'react-native';
 import AnimatedComponents from './src/chapter2/AnimatedComponents'
@@ -22,14 +26,33 @@ import AnimatedProperty from './src/chapter2/AnimatedProperty';
 import SnackBar from './src/chapter3/SnpackBar';
 import DrawerMenu from './src/chapter3/DrawerMenu';
 import Collapse from './src/chapter3/Collapse';
-
+import Progressbar from './src/chapter3/Progressbar'
+import Skeleton from './src/chapter3/Skeleton';
+import SnowAnimation from './src/chapter3/SnowAnimation';
+import LayoutAnimationIntro from './src/chapter4/LayoutAnimationIntro';
+import LayoutAnimationPageHeader from './src/chapter4/LayoutAnimationPageHeader';
+import LayoutAnimationCollaps from './src/chapter4/LayoutAnimationCollaps';
+import PanresponderIntro from './src/chapter5/PanresponderIntro';
+import PanResponderBall from './src/chapter5/PanresponerBall';
+import PanResponderModal from './src/chapter5/PanresponderModal';
+if(Platform.OS ==="android"){
+  if(UIManager.setLayoutAnimationEnabledExperimental){
+      UIManager.setLayoutAnimationEnabledExperimental(true)
+  }
+}
 const App=()=>{
   return (
     // <SafeAreaView style={{flex:1}}>
-   <Collapse/>
-     
+    //<Progressbar/>
+     //<Skeleton/>
+     //<SnowAnimation/>
     // </SafeAreaView>
-
+    //<LayoutAnimationIntro/>
+    //<LayoutAnimationPageHeader/>
+    //<LayoutAnimationCollaps/>
+    //<PanresponderIntro/>
+    //<PanResponderBall/>
+    <PanResponderModal/>
   );
 }
 
